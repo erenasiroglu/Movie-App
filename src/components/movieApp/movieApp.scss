@@ -1,0 +1,49 @@
+.movie-poster {
+  height: 400px;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.card-container {
+  margin-top: 5rem;
+}
+.movie-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.movie-overview {
+  font-size: 14px;
+  overflow: hidden;
+}
+
+.movie-card:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+}
+
+.movie-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.movie-link:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+.content-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.movie-rating {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.movie-rating-value {
+  margin-left: 10px;
+}

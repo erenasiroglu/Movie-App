@@ -1,0 +1,72 @@
+<v-app>
+  <v-app>
+    <v-app-bar color="deep-purple accent-4" dark app>
+      <v-toolbar-title>
+        <router-link to="/" class="movie-app-title white--text"
+          >Movie App</router-link
+        >
+      </v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-text-field
+        v-model="searchTerm"
+        label="What are you looking for ?"
+        hide-details
+        solo-inverted
+        @keyup.enter="searchMovies"
+        dense
+        class="search-input"
+      ></v-text-field>
+      <v-btn icon @click="searchMovies">
+        <v-icon>mdi-magnify</v-icon>
+      </v-btn>
+      <v-spacer></v-spacer>
+      <v-menu>
+        <template v-slot:activator="{ on }">
+          <v-btn text v-on="on" class="white--text">Show Movies</v-btn>
+        </template>
+        <v-list>
+          <v-list-item @click="getMoviesInTheaters">
+            <v-list-item-title class="deep-purple--text text--accent-4"
+              >In Theaters</v-list-item-title
+            >
+          </v-list-item>
+          <v-list-item @click="getTopRatedMovies">
+            <v-list-item-title class="deep-purple--text text--accent-4"
+              >Top Rated Movies on IMDB</v-list-item-title
+            >
+          </v-list-item>
+        </v-list>
+      </v-menu>
+    </v-app-bar>
+    <!-- create v-card -->
+    <v-container class="card-container">
+      <v-row>
+        <v-col cols="12" md="6" lg="4" v-for="movie in movies" :key="movie.id">
+          <router-link
+            :to="{ name: 'MovieDetails', params: { id: movie.id } }"
+            class="movie-link"
+          >
+            <v-img
+              class="movie-poster"
+              :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`"
+              :alt="`${movie.title} poster`"
+            ></v-img>
+            <v-card-title class="movie-title">{{ movie.title }}</v-card-title>
+            <v-card-text class="movie-overview"
+              >{{ movie.overview }}</v-card-text
+            >
+            <div class="movie-rating">
+              <v-icon class="yellow--text">mdi-star</v-icon>
+              <span class="movie-rating-value"
+                >{{ Math.round(movie.vote_average) }} IMDb</span
+              >
+            </div>
+          </router-link>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-app>
+  <v-footer app color="black" class="white--text text-center">
+    <span>&copy; 2023 Movie App</span>
+  </v-footer>
+</v-app>
